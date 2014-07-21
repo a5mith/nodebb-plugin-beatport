@@ -1,14 +1,25 @@
-(function(module) {
-    "use strict";
+    (function(module) {
+        "use strict";
+        var Beatport = {},
+            embedtrack = '<iframe class="beatport" src="http://embed.beatport.com/player?id=$1&type=track&auto=0"></iframe>',
+            embedmix = '<iframe class="beatport" src="http://embed.beatport.com/player?id=$1&type=mix&auto=0"></iframe>';
 
-    var JotForm = {},
-        embed = '<iframe class="beatport" src="http://embed.beatport.com/player/?id=$3&type=$1&auto=0">$1</iframe>';
+        Beatport.parse = function(postContent, callback) {
+            var	track = /<a href="(?:http?:\/\/)?(?:www\.)?(?:beatport\.com)\/track\/([\w\-_]+)">.+<\/a>/g;
+            var	mix = /<a href="(?:http?:\/\/)?(?:www\.)?(?:beatport\.com)\/mix\/([\w\-_]+)">.+<\/a>/g;
+
+            if (postContent.match(track)) {
+                postContent = postContent.replace(track, embedtrack);
+            }
+            if (postContent.match(mix)) {
+                postContent = postContent.replace(mix, embed);
+            }
+
+            callback(null, postContent);
+        };
+
+        module.exports = Beatport;
+    }(module));
 
 
-    JotForm.parse = function(postContent, callback) {
-        postContent = postContent.replace(/<a href="(?:http?:\/\/)?(?:www\.beatport\.com)\/([\w\-_]+)\/([\w\-_]+)\/([\w\-_]+)">([\w\-_]+)<\/a>/g, embed);
-        callback(null, postContent);
-    };
 
-    module.exports = JotForm;
-}(module));
