@@ -20,7 +20,3 @@
 
         module.exports = Beatport;
     }(module));
-
-
-
-    <iframe src="http://embed.beatport.com/player/?id=178484&type=mix" width="100%" height="162" frameborder="0" scrolling="no" style="max-width:600px;"></iframe>
