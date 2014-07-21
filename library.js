@@ -6,7 +6,7 @@
 
         Beatport.parse = function(postContent, callback) {
             var	track = /<a href="(?:http?:\/\/)?(?:www\.)?(?:beatport\.com)\/track\/([\w\-_]+)\/([\w\-_]+)">.+<\/a>/g;
-            var	mix = /<a href="(?:http?:\/\/)?(?:www\.)?(?:beatport\.com)\/mix\/([\w\-_]+)\/([\w\-_]+)">.+<\/a>/g;
+            var	mix = /<a href="(?:http?:\/\/)?(?:mixes\.)?(?:beatport\.com)\/mix\/([\w\-_]+)\/([\w\-_]+)">.+<\/a>/g;
 
             if (postContent.match(track)) {
                 postContent = postContent.replace(track, embedtrack);
